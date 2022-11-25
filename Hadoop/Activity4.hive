@@ -1,0 +1,12 @@
+# Creation of a table to store the data
+hive> CREATE TABLE files (line STRING);
+
+# Load data into the TABLE files in database using a file that is available on your local system (Container, NOT HDFS)
+hive> LOAD DATA LOCAL INPATH '/Activity4.txt' INTO TABLE files;
+
+# Creation of a new table using data from the files table
+hive> CREATE TABLE word_counts AS
+      > SELECT word, count(1) AS count FROM
+      > (SELECT explode(split(line, ' ')) AS word FROM files) w
+      > GROUP BY word
+      > ORDER BY word;
