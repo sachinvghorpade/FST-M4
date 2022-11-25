@@ -1,0 +1,3 @@
+hive > CREATE TABLE hiveactivity2table (line STRING);
+hive > LOAD DATA LOCAL INPATH 'root/inputs_project/episodeIV_dialouges.txt' INTO TABLE hiveactivity2table;
+hive > select count(*) from hiveactivity2table where INSTR(line, 'Luke');
